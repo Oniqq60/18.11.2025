@@ -60,7 +60,7 @@ func waitForShutdown(server *http.Server) {
 	if err := server.Shutdown(ctx); err != nil {
 		log.Printf("graceful shutdown failed: %v", err)
 	} else {
-		log.Print("сервер остановлен корректно")
+		log.Print("сервер остановлен корректн")
 	}
 }
 
