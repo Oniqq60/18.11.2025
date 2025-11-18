@@ -1,0 +1,125 @@
+{
+  "info": {
+    "name": "2025-11-18 Link Checker",
+    "_postman_id": "5c6f1fb5-6b86-4df4-96a7-1a9d2b2a7d00",
+    "description": "Коллекция для проверки API ссылок и генерации PDF-отчетов.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/healthz",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "healthz"
+          ]
+        },
+        "description": "Возвращает 200 OK и текст \"ok\"."
+      }
+    },
+    {
+      "name": "Submit links",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"links\": [\n    \"google.com\",\n    \"malformedlink.gg\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/submit",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "submit"
+          ]
+        },
+        "description": "Синхронно проверяет список ссылок и возвращает карту статусов + links_num."
+      },
+      "response": [
+        {
+          "name": "Example response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"links\": [\n    \"google.com\",\n    \"malformedlink.gg\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/submit",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "submit"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"links\": {\n    \"google.com\": \"available\",\n    \"malformedlink.gg\": \"not available\"\n  },\n  \"links_num\": 1\n}"
+        }
+      ]
+    },
+    {
+      "name": "Download report",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"links_num\": [1, 2]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/report",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "report"
+          ]
+        },
+        "description": "Генерирует PDF-отчет по нескольким links_num. Ответ — attachment application/pdf."
+      },
+      "response": []
+    }
+  ]
+}
+

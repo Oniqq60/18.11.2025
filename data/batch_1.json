@@ -1,0 +1,21 @@
+{
+  "id": 1,
+  "urls": [
+    "https://example.com",
+    "https://golang.org"
+  ],
+  "results": [
+    {
+      "url": "https://example.com",
+      "status": "available",
+      "http_code": 200
+    },
+    {
+      "url": "https://golang.org",
+      "status": "available",
+      "http_code": 200
+    }
+  ],
+  "done": true,
+  "created": "2025-11-18T14:06:27.6976736Z"
+}
